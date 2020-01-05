@@ -10,6 +10,11 @@
 #include <string.h>
 #include <pthread.h>
 #include <signal.h>
+#include <limits.h>
+
+// True or false
+#define TRUE 1
+#define FALSE 0
 
 // Disconnect command
 #define CMD_DC 100
@@ -49,8 +54,9 @@
 // Maximum string lengths
 #define MAX_BODY 1000
 #define MAX_TPCTTL 50
-#define MAX_USER 20
-#define MAX_FIFO 10
+#define MAX_USER 21
+#define MAX_FIFO 21
+#define MAX_NUM 11
 
 typedef struct {
     char Username[MAX_USER];                    // Username
@@ -69,7 +75,7 @@ typedef union {
     USER un_user;                               // Sent user
     MESSAGE un_msg;                             // Sent message
     char un_topic[MAX_TPCTTL];                  // Sent topic
-    char *un_tt[MAX_TPCTTL];                    // Sent topics or titles
+    int un_tt;                                  // Send IDs or Numbers
 } CMD_UN;
 
 typedef struct {
